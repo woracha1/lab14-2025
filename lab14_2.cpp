@@ -43,21 +43,17 @@ void inputMatrix(double B[][N]){
 }
 
 void findLocalMax(const double A[][N], bool B[][N]){
-    
     for(int i = 0 ; i < N ; i++){
         for(int u = 0 ; u < N ; u ++){
-            if(A[i][u]>=A[i][u-1] && A[i][u]>=A[i][u+1] && A[i][u]>=A[i-1][u] && A[i][u]>=A[i+1][u]){
-                B[i][u] = true ;
-            }else if((A[i][u]<A[i][u-1] || A[i][u]<A[i][u+1] || A[i][u]<A[i-1][u] || A[i][u]<A[i+1][u])){
-                B[i][u] = false ;
+            if (i > 0 && i < N - 1 && u > 0 && u < N - 1) {
+                if(A[i][u]>=A[i][u-1] && A[i][u]>=A[i][u+1] && A[i][u]>=A[i-1][u] && A[i][u]>=A[i+1][u]){
+                    B[i][u] = true ;
+                }else{
+                    B[i][u] = false ; 
+                }
             }else{
                 B[i][u] = false ;
             }
-            
-            if(i==0) B[i][u] = false ;
-            if(i==4) B[i][u] = false ; 
-            if(u==0) B[i][u] = false ;
-            if(u==4) B[i][u] = false ;
 
         }
     }
